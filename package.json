@@ -1,0 +1,33 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "author": "James Lal [:lightsofapollo]",
+  "description": "Firefox / B2G runtime manager.",
+  "main": "index.js",
+  "keywords": [
+    "firefox os",
+    "gecko",
+    "b2g-desktop",
+    "firefox"
+  ],
+  "dependencies" : {
+    "debug": "*",
+    "mozilla-download": "~0.1.0",
+    "mozilla-profile-builder": "~0.0.2",
+    "mozilla-runner": "~0.0.1",
+    "empty-port": "~0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.7",
+    "node-static": "~0.6",
+    "marionette-client": "~0.6"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.4"
+  },
+
+  "scripts": {
+    "test": "make test"
+  }
+}
