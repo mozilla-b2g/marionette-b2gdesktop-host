@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "marionette-host-environment",
   "version": "0.0.1",
   "author": "James Lal [:lightsofapollo]",
   "description": "Firefox / B2G runtime manager.",
