@@ -20,18 +20,15 @@ suite('spawn', function() {
         if (err) return done(err);
         port = _port;
         child = _child;
-        console.log(port);
         done();
       });
     });
 
     function openSocket(callback) {
       var sock = net.connect({ port: port }, function() {
-        console.log('OPENZ!');
         callback(sock);
       });
       sock.on('error', function() {
-        console.log('ERRORS!');
         setTimeout(openSocket, 2000, callback);
       });
     }
@@ -40,7 +37,6 @@ suite('spawn', function() {
       openSocket(function(sock) {
         sock.on('data', function(content) {
           content = content.toString();
-          console.log(content);
           if (content.indexOf('gecko') !== -1)
             done();
         });
