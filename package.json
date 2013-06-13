@@ -20,7 +20,7 @@
   "devDependencies": {
     "mocha": "~1.7",
     "node-static": "~0.6",
-    "marionette-client": "~0.6"
+    "marionette-client": "~0.5.5"
   },
   "license": "MIT",
   "engine": {
