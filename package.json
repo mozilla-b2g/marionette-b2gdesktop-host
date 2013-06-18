@@ -1,6 +1,6 @@
 {
   "name": "marionette-host-environment",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "James Lal [:lightsofapollo]",
   "description": "Firefox / B2G runtime manager.",
   "main": "index.js",
@@ -20,7 +20,8 @@
   "devDependencies": {
     "mocha": "~1.7",
     "node-static": "~0.6",
-    "marionette-client": "~0.5.5"
+    "marionette-client": "~0.5.5",
+    "commander": "~1.2"
   },
   "license": "MIT",
   "engine": {
