@@ -1,3 +1,5 @@
+# 0.3.3
+  - undo peerDep
 # 0.3.0
   - allow additional options to be passed to the profile builder so
     apps, settings AND prefs can be specified.
