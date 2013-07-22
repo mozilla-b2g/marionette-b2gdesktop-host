@@ -1,7 +1,7 @@
 # Marionett Host Environment
 
 [![Build
-Status](https://travis-ci.org/lightsofapollo/marionette-host-environment.png)](https://travis-ci.org/lightsofapollo/marionette-host-environment)
+Status](https://travis-ci.org/mozilla-b2g/marionette-host-environment.png)](https://travis-ci.org/mozilla-b2g/marionette-host-environment)
 
 A complete target environment for marionette using b2g desktop.
 
