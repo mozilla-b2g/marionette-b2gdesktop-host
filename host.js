@@ -24,6 +24,15 @@ function Host(options) {
   this.options.product = 'b2g';
 }
 
+/**
+ * Immutable metadata describing this host.
+ *
+ * @type {Object}
+ */
+Host.metadata = Object.freeze({
+  host: 'b2g-desktop'
+});
+
 Host.prototype = {
   /**
    * Reference to b2g-desktop process.
@@ -48,11 +57,6 @@ Host.prototype = {
    */
   port: null,
 
-  /**
-   * Immutable metadata describing this host.
-   *
-   * @type {Object}
-   */
   metadata: Object.freeze({
     host: 'b2g-desktop'
   }),

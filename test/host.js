@@ -22,8 +22,8 @@ suite('host', function() {
     assert.equal(subject.options.xxx, true);
   });
 
-  test('.metadata', function() {
-    assert.equal(subject.metadata.host, 'b2g-desktop');
+  test('Host.metadata', function() {
+    assert.equal(Host.metadata.host, 'b2g-desktop');
   });
 
   suite('#start', function() {
