@@ -1,3 +1,5 @@
+# 0.4.0
+  - new host api at marionette-host-environment/host
 # 0.3.3
   - undo peerDep
 # 0.3.0
