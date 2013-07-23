@@ -16,12 +16,13 @@
     "mozilla-profile-builder": "~0.1.1",
     "mozilla-runner": "~0.0.1",
     "empty-port": "~0.0.1",
-    "commander": "~1.2"
+    "commander": "~1.2",
+    "remove": "~0.1"
   },
   "devDependencies": {
     "mocha": "~1.7",
     "node-static": "~0.6",
-    "marionette-client": "~0.5.5"
+    "marionette-client": "~0.9.1"
   },
   "license": "MIT",
   "engine": {
