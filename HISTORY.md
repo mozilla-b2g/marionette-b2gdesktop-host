@@ -1,3 +1,4 @@
+# Rename to marionette-b2gdesktop-host (same functionality)
 # 0.4.0
   - new host api at marionette-host-environment/host
 # 0.3.3
