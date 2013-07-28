@@ -1,6 +1,6 @@
 .PHONY: test
 test:
-	./node_modules/mocha/bin/mocha --ui tdd -t 100s
+	./node_modules/mocha/bin/mocha --ui tdd -t 100s test/index
 
 .PHONY: ci
 ci:
