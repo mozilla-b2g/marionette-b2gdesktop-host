@@ -1,4 +1,4 @@
-# Marionett Host Environment
+# B2G Desktop host for marionette-js-runner
 
 [![Build
 Status](https://travis-ci.org/mozilla-b2g/marionette-host-environment.png)](https://travis-ci.org/mozilla-b2g/marionette-host-environment)
