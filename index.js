@@ -86,17 +86,6 @@ Host.prototype = {
   },
 
   /**
-   * Restarts the b2g-desktop process
-   */
-  restart: function(profile, options, callback) {
-    debug('restart');
-    this.stop(function(err) {
-      if (err) return callback(err);
-      this.start(profile, options, callback);
-    }.bind(this));
-  },
-
-  /**
    * Stop the currently running host.
    *
    * @param {Function} callback [Error err].

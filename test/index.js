@@ -87,25 +87,4 @@ suite('host', function() {
       });
     });
   });
-
-  suite('#restart', function() {
-    var originalPid;
-    setup(function(done) {
-      subject.start(profile.path, done);
-    });
-
-    setup(function(done) {
-      originalPid = subject._process.pid;
-      subject.restart(profile.path, {}, done);
-    });
-
-    teardown(function(done) {
-      subject.stop(done);
-    });
-
-    test('is running on new pid', function(done) {
-      assert.notEqual(originalPid, subject._process.pid, 'port changes');
-      connect(port, done);
-    });
-  });
 });
