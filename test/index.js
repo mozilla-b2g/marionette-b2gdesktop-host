@@ -1,6 +1,8 @@
 suite('host', function() {
   var Marionette = require('marionette-client'),
-      Host = require('../host'),
+      Host = require('../'),
+      mozprofile = require('mozilla-profile-builder'),
+      emptyPort = require('empty-port');
       net = require('net'),
       fs = require('fs');
 
@@ -8,13 +10,39 @@ suite('host', function() {
     var Tcp = Marionette.Drivers.Tcp;
 
     // the intent is to verify that the marionette connection can/cannot work.
-    (new Tcp({ port: port, tries: 1 })).connect(callback);
+    (new Tcp({ port: port, tries: 5 })).connect(callback);
   }
 
   var subject;
-
   setup(function() {
     subject = new Host();
+  });
+
+  var port;
+  setup(function(done) {
+    emptyPort({ startPort: 60000 }, function(err, _port) {
+      port = _port;
+      done(err);
+    });
+  });
+
+  var profile;
+  setup(function(done) {
+    var options = {
+      prefs: {
+        'marionette.defaultPrefs.enabled': true,
+        'marionette.defaultPrefs.port': port
+      }
+    };
+
+    mozprofile.create(options, function(err, _profile) {
+      profile = _profile;
+      done(err);
+    });
+  });
+
+  teardown(function(done) {
+    profile.destroy(done);
   });
 
   test('.options', function() {
@@ -27,43 +55,28 @@ suite('host', function() {
   });
 
   suite('#start', function() {
-    var port;
     setup(function(done) {
-      subject.start(done);
+      subject.start(profile.path, {}, done);
     });
 
     test('can connect after start', function(done) {
-      connect(subject.port, done);
+      connect(port, done);
     });
 
-    teardown(function() {
+    teardown(function(done) {
       if (subject._process)
+        subject._process.on('exit', done);
         subject._process.kill();
     });
   });
 
-  suite('#stop - without custom profile', function() {
-    var port,
-        profile;
-
+  suite('#stop', function() {
     setup(function(done) {
-      subject.start(done);
+      subject.start(profile.path, done);
     });
 
     setup(function(done) {
-      port = subject.port;
-      profile = subject._profile;
-
       subject.stop(done);
-    });
-
-    test('should set .port to null', function() {
-      assert.ok(!subject.port);
-    });
-
-    test('should delete profile', function() {
-      assert.ok(profile, 'has profile');
-      assert.ok(!fs.existsSync(profile), 'removes profile');
     });
 
     test('after closing process', function(done) {
@@ -72,27 +85,6 @@ suite('host', function() {
         assert.equal(err.code, 'ECONNREFUSED');
         done();
       });
-    });
-  });
-
-  suite('#restart', function() {
-    var originalPort;
-    setup(function(done) {
-      subject.start(done);
-    });
-
-    setup(function(done) {
-      originalPort = subject.port;
-      subject.restart(done);
-    });
-
-    teardown(function(done) {
-      subject.stop(done);
-    });
-
-    test('starts on new port', function(done) {
-      assert.notEqual(originalPort, subject.port, 'port changes');
-      connect(subject.port, done);
     });
   });
 });
