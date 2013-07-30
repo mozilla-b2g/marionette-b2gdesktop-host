@@ -1,5 +1,6 @@
 # 0.5.0
-  - new host api
+  - new host api (breaks backawards compat!!!)
+  - this module is now mostly designed to be used with marionette-js-runner
 # Rename to marionette-b2gdesktop-host (same functionality)
 # 0.4.0
   - new host api at marionette-host-environment/host

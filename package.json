@@ -1,6 +1,6 @@
 {
   "name": "marionette-b2gdesktop-host",
-  "version": "0.5.0-alpha",
+  "version": "0.5.0",
   "author": "James Lal [:lightsofapollo]",
   "description": "marionette-js-runner host for b2g-desktop",
   "main": "index.js",
