@@ -3,9 +3,26 @@ var fsPath = require('path'),
     mozrunner = require('mozilla-runner'),
     mozdown = require('mozilla-download'),
     spawn = require('./index').spawn,
-    debug = require('debug')('marionette-b2g-host');
+    debug = require('debug')('marionette-b2g-host'),
+    debugChild = require('debug')('b2g-desktop');
 
 var DOWNLOAD_DIR = fsPath.join(process.cwd(), 'b2g');
+
+/**
+ * Handles piping process details to debug.
+ * @param {ChildProcess} process to watch.
+ * @private
+ */
+function debugProcess(process) {
+  function watchStream(type, stream) {
+    stream.on('data', function(buffer) {
+      debugChild(type, buffer.toString());
+    });
+  }
+
+  watchStream('stdout', process.stdout);
+  watchStream('stderr', process.stderr);
+}
 
 /**
  * Host interface for marionette-js-runner.
@@ -78,6 +95,7 @@ Host.prototype = {
 
     function saveState(err, process) {
       if (err) return callback(err);
+      debugProcess(process);
       self._process = process;
       callback();
     }
