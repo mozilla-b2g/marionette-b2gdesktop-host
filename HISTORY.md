@@ -1,3 +1,5 @@
+# 0.5.1
+  - DEBUG=b2g-desktop will show b2g process stdout/stderr
 # 0.5.0
   - new host api (breaks backawards compat!!!)
   - this module is now mostly designed to be used with marionette-js-runner
