@@ -6,7 +6,7 @@ var fsPath = require('path'),
     debug = require('debug')('marionette-b2g-host'),
     debugChild = require('debug')('b2g-desktop');
 
-var DOWNLOAD_DIR = fsPath.join(process.cwd(), 'b2g');
+var DEFAULT_LOCATION = fsPath.join(process.cwd(), 'b2g');
 
 /**
  * Handles piping process details to debug.
@@ -38,7 +38,7 @@ function Host(options) {
   //       where we can stuff b2g-desktop without saving it in node_modules or
   //       cwd.
   this.options = options || {};
-  this.options.runtime = this.options.runtime || DOWNLOAD_DIR;
+  this.options.runtime = this.options.runtime || DEFAULT_LOCATION;
 }
 
 /**
@@ -77,20 +77,14 @@ Host.prototype = {
     var self = this;
     var target = self.options.runtime;
 
-    function download() {
-      var version = self.options.version;
-
-      mozdown.download(
-        'b2g',
+    function run() {
+      debug('binary: ', target);
+      debug('profile: ', profile);
+      mozrunner.run(
         target,
-        { version: version },
-        run
+        { profile: profile, product: 'b2g' },
+        saveState
       );
-    }
-
-    function run(err) {
-      if (err) return callback(err);
-      mozrunner.run('b2g', target, { profile: profile }, saveState);
     }
 
     function saveState(err, process) {
@@ -100,7 +94,7 @@ Host.prototype = {
       callback();
     }
 
-    download();
+    run();
   },
 
   /**

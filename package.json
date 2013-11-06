@@ -1,6 +1,6 @@
 {
   "name": "marionette-b2gdesktop-host",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "author": "James Lal [:lightsofapollo]",
   "description": "marionette-js-runner host for b2g-desktop",
   "main": "index.js",
@@ -11,23 +11,22 @@
     "firefox",
     "marionette-js-runner"
   ],
-  "dependencies" : {
+  "dependencies": {
     "debug": "*",
-    "mozilla-download": "~0.2.1",
-    "mozilla-runner": "~0.0.1"
+    "mozilla-runner": "~0.2.0",
+    "mozilla-download": "~0.4.0"
   },
   "devDependencies": {
     "empty-port": "~0.0.1",
-    "mozilla-profile-builder": "~0.2.0-alpha",
+    "mozilla-profile-builder": "~0.2.0",
     "mocha": "~1.7",
     "node-static": "~0.6",
-    "marionette-client": "~0.9.1"
+    "marionette-client": "~1.0"
   },
   "license": "MIT",
   "engine": {
     "node": ">=0.4"
   },
-
   "scripts": {
     "test": "make test"
   }

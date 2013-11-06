@@ -29,6 +29,7 @@ suite('host', function() {
   var profile;
   setup(function(done) {
     var options = {
+      profile: ['gaia', __dirname + '/../b2g'],
       prefs: {
         'marionette.defaultPrefs.enabled': true,
         'marionette.defaultPrefs.port': port
