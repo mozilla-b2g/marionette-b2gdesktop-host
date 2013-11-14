@@ -71,13 +71,7 @@ Host.prototype = {
       callback = options;
       options = null;
     }
-
-    var userOptions = {};
-
-    for (var key in userOptions) {
-      options[key] = userOptions[key];
-    }
-    userOptions.profile = userOptions.profile || profile;
+    options = options || {};
 
     debug('start');
     var self = this;
@@ -96,10 +90,7 @@ Host.prototype = {
 
     function run(err) {
       if (err) return callback(err);
-      mozrunner.run('b2g',
-        target,
-        userOptions,
-        saveState);
+      mozrunner.run('b2g', target, { profile: profile }, saveState);
     }
 
     function saveState(err, process) {
