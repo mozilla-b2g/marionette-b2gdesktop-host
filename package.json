@@ -1,6 +1,6 @@
 {
   "name": "marionette-b2gdesktop-host",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "author": "James Lal [:lightsofapollo]",
   "description": "marionette-js-runner host for b2g-desktop",
   "main": "index.js",
@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "debug": "*",
-    "mozilla-runner": "~0.2.0"
+    "mozilla-runner": "~0.3.0"
   },
   "devDependencies": {
     "empty-port": "~0.0.1",
