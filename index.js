@@ -1,7 +1,6 @@
 var fsPath = require('path'),
     fs = require('fs'),
     mozrunner = require('mozilla-runner'),
-    mozdown = require('mozilla-download'),
     spawn = require('./index').spawn,
     debug = require('debug')('marionette-b2g-host'),
     debugChild = require('debug')('b2g-desktop');
@@ -71,7 +70,14 @@ Host.prototype = {
       callback = options;
       options = null;
     }
-    options = options || {};
+
+    var userOptions = {};
+
+    for (var key in options) {
+      userOptions[key] = options[key];
+    }
+    userOptions.profile = userOptions.profile || profile;
+    userOptions.product = userOptions.product || 'b2g';
 
     debug('start');
     var self = this;
@@ -82,7 +88,7 @@ Host.prototype = {
       debug('profile: ', profile);
       mozrunner.run(
         target,
-        { profile: profile, product: 'b2g' },
+        userOptions,
         saveState
       );
     }
