@@ -1,3 +1,6 @@
+# 0.7.0
+  - added better customizations via option copying
+
 # 0.5.1
   - DEBUG=b2g-desktop will show b2g process stdout/stderr
 # 0.5.0
