@@ -13,7 +13,7 @@
   ],
   "dependencies": {
     "debug": "*",
-    "mozilla-runner": "~0.3.0"
+    "mozilla-runner": "~0.4.0"
   },
   "devDependencies": {
     "empty-port": "~0.0.1",
