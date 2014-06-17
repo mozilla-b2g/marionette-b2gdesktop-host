@@ -79,6 +79,7 @@ Host.prototype = {
     userOptions.profile = userOptions.profile || profile;
     userOptions.product = userOptions.product || 'b2g';
     userOptions.runtime = this.options.customRuntime;
+    userOptions.chrome = 'chrome://b2g/content/shell.html';
 
     debug('start');
     var self = this;
