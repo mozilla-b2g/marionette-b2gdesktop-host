@@ -1,1 +1,3 @@
---ui tdd --require test/helper.js
+--require test/helper.js
+--timeout 100s
+--ui tdd
