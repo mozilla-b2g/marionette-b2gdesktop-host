@@ -56,12 +56,26 @@ suite('host', function() {
   });
 
   suite('#start', function() {
+    var state;
     setup(function(done) {
-      subject.start(profile.path, {}, done);
+      subject.start(profile.path, {}, function(err, _state) {
+        if (err) return done(err);
+        state = _state;
+        done();
+      });
     });
 
     test('can connect after start', function(done) {
       connect(port, done);
+    });
+
+    test('logging', function(done) {
+      state.log.on('data', function onData(data) {
+        if (data.toString().indexOf('marionette') !== -1) {
+          state.log.removeListener('data', onData);
+          done();
+        }
+      });
     });
 
     teardown(function(done) {

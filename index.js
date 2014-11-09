@@ -5,6 +5,8 @@ var fsPath = require('path'),
     debug = require('debug')('marionette-b2g-host'),
     debugChild = require('debug')('b2g-desktop');
 
+var PassThrough = require('stream').PassThrough;
+
 var DEFAULT_LOCATION = fsPath.join(process.cwd(), 'b2g');
 
 /**
@@ -12,15 +14,12 @@ var DEFAULT_LOCATION = fsPath.join(process.cwd(), 'b2g');
  * @param {ChildProcess} process to watch.
  * @private
  */
-function debugProcess(process) {
-  function watchStream(type, stream) {
-    stream.on('data', function(buffer) {
-      debugChild(type, buffer.toString());
-    });
-  }
-
-  watchStream('stdout', process.stdout);
-  watchStream('stderr', process.stderr);
+function debugProcess(stream) {
+  // XXX: Remove this code entirely in favor of better options from
+  // marionette-js-runner...
+  stream.on('data', function(buffer) {
+    debugChild(buffer.toString());
+  });
 }
 
 /**
@@ -127,9 +126,17 @@ Host.prototype = {
 
     function saveState(err, process) {
       if (err) return callback(err);
-      debugProcess(process);
+
+      // Why not pipe? Back pressure here will "freeze" the gecko instance
+      // preventing real interaction with the process. I am not clear as to why
+      // but this fixed it.
+      var log = new PassThrough();
+      process.stdout.on('data', log.write.bind(log));
+      process.stderr.on('data', log.write.bind(log));
+
+      debugProcess(log);
       self._process = process;
-      callback();
+      callback(null, { log: log });
     }
 
     run();
