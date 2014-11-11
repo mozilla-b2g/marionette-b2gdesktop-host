@@ -18,7 +18,7 @@
   "devDependencies": {
     "empty-port": "~0.0.1",
     "mozilla-profile-builder": "~0.2.0",
-    "mocha": "~1.7",
+    "mocha": "~2.0",
     "node-static": "~0.6",
     "marionette-client": "~1.0",
     "mozilla-download": "~0.4"
