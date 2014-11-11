@@ -40,6 +40,38 @@ function Host(options) {
   this.options.runtime = this.options.runtime || DEFAULT_LOCATION;
 }
 
+Host.help = {
+  group: {
+    title: 'B2G Desktop Host',
+    description: 'Additional parameters for b2g desktop',
+  },
+
+  arguments: {
+    '--runtime': {
+      help: 'Folder where b2g-bin or b2g binary lives',
+      defaultValue: DEFAULT_LOCATION
+    },
+
+    '--chrome': {
+      help: 'Starting point of chrome (--chrome)',
+      defaultValue: 'chrome://b2g/content/shell.html',
+    },
+
+    '--start-debugger-server': {
+      dest: 'startDebugger',
+      help: 'When true starts debugger server (-start-debugger-server)',
+      action: 'storeTrue',
+      defaultValue: false
+    },
+
+    '--oop': {
+      help: 'Start with out of process applications enabled',
+      action: 'storeTrue',
+      defaultValue: false
+    }
+  }
+};
+
 /**
  * Immutable metadata describing this host.
  *
@@ -78,8 +110,6 @@ Host.prototype = {
     }
     userOptions.profile = userOptions.profile || profile;
     userOptions.product = userOptions.product || 'b2g';
-    userOptions.runtime = this.options.customRuntime;
-    userOptions.chrome = 'chrome://b2g/content/shell.html';
 
     debug('start');
     var self = this;
