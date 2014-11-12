@@ -1,3 +1,6 @@
+# 0.9.0
+  - Add support for returning gecko log
+
 # 0.8.0
   - Support for mulet
   - Support for using a custom gecko (rather than the one fetched via mozilla-download)
