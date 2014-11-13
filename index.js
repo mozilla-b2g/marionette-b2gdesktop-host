@@ -149,9 +149,11 @@ Host.prototype = {
    */
   stop: function(callback) {
     debug('stop');
-    if (this._process) {
+    if (this._process && this._process.connected) {
       this._process.on('exit', callback);
       this._process.kill();
+    } else {
+      callback('b2g process not running');
     }
   }
 };
